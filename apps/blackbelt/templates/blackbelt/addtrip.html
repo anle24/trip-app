@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add Trip</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blackbelt/css/style.css' %}">
+  </head>
+  <body>
+    <a href="/travels">Home</a>
+    <a href="/logout">Logout</a>
+    <h1>Add a Trip</h1>
+    {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    <form action="/addtrip" method="post">
+      {% csrf_token %}
+      <p><label>Destination: </label><input type="text" name="destination"></p>
+      <p><label>Description: </label><input type="text" name="description"></p>
+      <p><label>Travel Start Date: </label><input type="date" name="startdate"></p>
+      <p><label>Travel End Date: </label><input type="date" name="enddate"></p>
+      <input type="submit" name="submit" value="Add">
+    </form>
+  </body>
+</html>

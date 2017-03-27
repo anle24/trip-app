@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Login/Registration</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" type="text/css" href="{% static 'blackbelt/css/style.css' %}">
+</head>
+<body>
+	<div class="wrapper">
+		<h1>Welcome!</h1>
+		{% if messages %}
+			<div class="error">
+				<ul>
+					{% for message in messages %}
+					<li>{{ message }}</li>
+				{% endfor %}
+				</ul>
+			</div>
+		{% endif %}
+		<div class="index-content">
+			<div class="index-form">
+				<h1>Registration</h1>
+				<form action="/process_logreg" method='POST'>
+					{% csrf_token %}
+					<input type="hidden" name="action" value="register">
+					<p><label>Name: <input type="text" name="name"></label></p>
+					<p><label>Username: <input type="text" name="username"></label></p>
+					<p><label>Password: <input type="password" name="password"></label>
+					*Password should be at least 8 characters</p>
+					<p><label>Confirm pw: <input type="password" name="confirmpw"></label><p>
+					<p><input type="submit" value="Register" class="button"></p>
+				</form>
+			</div>
+			<div class="index-form">
+				<h1>Login</h1>
+				<form action="/process_logreg" method='POST'>
+					{% csrf_token %}
+					<input type="hidden" name="action" value="login">
+					<p><label>Username: <input type="text" name="username"></label></p>
+					<p><label>Password: <input type="password" name="password"></label></p>
+					<p><input type="submit" value="Login" class="button"></p>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
