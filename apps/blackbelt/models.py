@@ -33,7 +33,7 @@ class UserManager(models.Manager):
                 user = self.create(name = postData['name'], username = postData['username'], password = password)
                 return { "theuser": user }
         else:
-            return { "errors": errors }
+            return { "error": errors }
 
     def login(self, postData):
         errors = []
@@ -49,7 +49,7 @@ class UserManager(models.Manager):
         if not errors:
             return { "theuser": user }
         else:
-            return { "errorr": errors }
+            return { "error": errors }
 
 class TripManager(models.Manager):
     def add(self, postData):
